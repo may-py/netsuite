@@ -1,0 +1,28 @@
+# Open PowerBi Desktop application
+# Go to get data and select python.
+
+
+#Import basic libraries 
+import pandas as pd
+import numpy as np
+import lxml
+
+# Create variable of Netsuite's webquery link
+url = 'https://xxxxx.app.netsuite.com/app/reporting/webquery.nl?compid=xxxxxx&entity=-x&email=xxxxxxxxxxxxxx&role=x&cr=xxx&hash=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+
+#Create dataframe using pandas of the webquery url
+data = pd.read_html(url,flavor='lxml')
+
+#Get first item of the list and convert into dataframe(Tabular form)
+df = pd.DataFrame(data[0])
+
+#Use first row as headers
+header = df.iloc[0]
+df = df[1:]
+df.columns = header
+
+
+#Remove special character from values
+df['Amount'] = df['Amount'].str.replace('=',"").astype(float)
+
+#Your dataframe is ready to load in powerbi
