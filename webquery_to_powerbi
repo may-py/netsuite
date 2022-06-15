@@ -26,3 +26,33 @@ df.columns = header
 df['Amount'] = df['Amount'].str.replace('=',"").astype(float)
 
 #Your dataframe is ready to load in powerbi
+
+
+
+Option 2. 
+
+import requests
+import pandas as pd
+import json
+import lxml
+from lxml import etree
+import urllib3, urllib
+from urllib.request import urlopen
+
+
+url = 'https://xxxxx.app.netsuite.com/app/reporting/webquery.nl?compid=xxxxxx&entity=-x&email=xxxxxxxxxxxxxx&role=x&cr=xxx&hash=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+x = requests.get(url1)
+html = etree.HTML(x.content)
+tr_nodes = html.xpath('//table/tr')
+
+td_content = [[td.text for td in tr.xpath('td')] for tr in tr_nodes[0:]]
+
+data = pd.DataFrame(td_content)
+
+header = data.iloc[0]
+data = data[1:]
+data.columns = header
+
+
+
+
