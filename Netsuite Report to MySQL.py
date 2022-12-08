@@ -50,7 +50,8 @@ def get_mysql():
     import urllib3, urllib
     from urllib.request import urlopen
     
-    url = 'https://xxxxx.app.netsuite.com/app/reporting/webquery.nl?compid=xxxxxx&entity=-x&email=xxxxxxxxxxxxxx&role=x&cr=xxx&hash=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'    x = requests.get(url)
+    url = 'https://xxxxx.app.netsuite.com/app/reporting/webquery.nl?compid=xxxxxx&entity=-x&email=xxxxxxxxxxxxxx&role=x&cr=xxx&hash=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'    
+    x = requests.get(url)
     html = etree.HTML(x.content)
     tr_nodes = html.xpath('//table/tr')
 
